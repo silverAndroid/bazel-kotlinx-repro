@@ -1,0 +1,12 @@
+load("@rules_kotlin//kotlin:android.bzl", "kt_android_library")
+
+kt_android_library(
+    name = "theme",
+    srcs = glob(["*.kt"]),
+    plugins = ["//third_party:jetpack_compose_compiler_plugin"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "@maven//:androidx_compose_material3_material3",
+        "@maven//:androidx_core_core_ktx",
+    ],
+)

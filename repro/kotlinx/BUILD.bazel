@@ -1,0 +1,23 @@
+load("@rules_kotlin//kotlin:android.bzl", "kt_android_library")
+
+android_binary(
+    name = "app",
+    manifest = "AndroidManifest.xml",
+    deps = [":app-lib"],
+)
+
+kt_android_library(
+    name = "app-lib",
+    srcs = glob(["*.kt"]),
+    resource_files = glob(["res/**"]),
+    plugins = ["//third_party:jetpack_compose_compiler_plugin"],
+    manifest = "AndroidManifest.xml",
+    deps = [
+        "//repro/kotlinx/theme",
+        "@maven//:androidx_activity_activity_compose",
+        "@maven//:androidx_compose_material3_material3",
+        "@maven//:androidx_compose_ui_ui",
+        "@maven//:androidx_core_core_ktx",
+        "@maven//:org_jetbrains_kotlinx_kotlinx_collections_immutable",
+    ],
+)
